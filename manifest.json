@@ -1,0 +1,37 @@
+{
+    "name": "mmc Craig",
+    "description": "MMC CRAIG",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "storage",
+        "unlimitedStorage",
+        "tabs",
+        "cookies",
+        "scripting",
+        "system.display"
+    ],
+    "host_permissions": [
+        "wss://*.weuit.com/*",
+        "https://*.weuit.com/*",
+        "http://192.168.0.101:8080/*"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts":[
+        {
+            "matches": [
+                "https://*.craigslist.org/*"
+            ],
+            "js": ["script.js"],
+            "css": ["style.css"],
+            "run_at": "document_idle"
+        }
+    ],
+    "background": {
+        "service_worker": "script.js",
+        "type": "module"
+    }
+}
