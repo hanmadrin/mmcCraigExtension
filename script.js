@@ -3781,6 +3781,15 @@ const contentSetup = async()=>{
                 "tuscarawas",
                 "zanesville",
             ]
+        },
+        {
+            state: 'Connecticut',
+            cities: [
+                "newlondon",
+                "hartford",
+                "newhaven",
+                "nwct",
+            ]
         }
 
     ];
@@ -3820,15 +3829,47 @@ const contentSetup = async()=>{
                     const title = link.closest('li').getAttribute('title');
                     //  Subaru WRX , Nissan Pathfinder, Chevrolet Traverse, Ford F-150, Chevy  1500, Jeep Wrangler,  and Ford Ecosport
                     const keywords = [
-                        'WRX',
-                        // 'Nissan Pathfinder',
-                        // 'Chevrolet Traverse',
-                        // "Chevy Traverse",
-                        // 'Ford F 150',
-                        // 'Chevy 1500',
-                        // 'Chevrolet 1500',
-                        // 'Jeep Wrangler',
-                        // 'Ford Ecosport'
+                        // Chevrolet	Cruze
+                        // Dodge	Durango
+                        // Ford	Escape  *
+                        // Ford	Fusion
+                        // Toyota	Sienna
+                        // GMC	Terrain
+                        // Jeep	Wrangler
+                        // Subaru	WRX
+                        // GMC	Acadia
+                        // Jeep	Compass
+                        // Subaru	Crosstrek
+                        // Ford	EcoSport
+                        // Toyota	RAV 4
+                        // Chevrolet	Trailblazer
+                        // Jeep	Cherokee
+                        // Chevrolet	Traverse
+                        // Nissan	Rogue
+                        // Jeep	Grand Cherokee
+                        // Subaru	Legacy
+                        // Chevrolet	Equinox
+                        'Chevrolet Cruze',
+                        'Chevy Cruze',
+                        'Dodge Durango',
+                        'Ford Escape',
+                        'Ford Fusion',
+                        'Toyota Sienna',
+                        'GMC Terrain',
+                        'Jeep Wrangler',
+                        'Subaru WRX',
+                        'GMC Acadia',
+                        'Jeep Compass',
+                        'Subaru Crosstrek',
+                        'Ford EcoSport',
+                        'Toyota RAV 4',
+                        'Chevrolet Trailblazer',
+                        'Jeep Cherokee',
+                        'Chevrolet Traverse',
+                        'Nissan Rogue',
+                        'Jeep Grand Cherokee',
+                        'Subaru Legacy',
+                        'Chevrolet Equinox',
                     ];
                     let isValid = false;
                     for(let i=0;i<keywords.length;i++){
