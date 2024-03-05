@@ -4078,7 +4078,7 @@ const contentSetup = async()=>{
         }
 
     };
-    await contentScripts.showWorkingStep();
+    await contentScripts.showWorkingStep(step);
     switch(step){
         case 'collectLists':
             
