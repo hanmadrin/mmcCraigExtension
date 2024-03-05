@@ -4062,7 +4062,7 @@ const contentSetup = async()=>{
                     linkIndex++;
                     await aftercollectData();
                 }
-                
+                // await aftercollectData();
                 
                 
             }
@@ -4078,8 +4078,10 @@ const contentSetup = async()=>{
         }
 
     };
+    await contentScripts.showWorkingStep();
     switch(step){
         case 'collectLists':
+            
             await collectLists();
             break;
         case "collectData":
