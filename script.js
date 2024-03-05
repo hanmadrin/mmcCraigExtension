@@ -3973,8 +3973,8 @@ const contentSetup = async()=>{
                         data: {
                             type: 'querySelectorAll',
                             isMonoExpected: true,
-                            selector: `p.attrgroup span`,
-                            innerText : `${attribute}: `,
+                            selector: `p.attrgroup span.labl`,
+                            innerText : `${attribute}:`,
                         },
                         instant: true,
                         // maxTimeOut: 5,
@@ -3982,7 +3982,7 @@ const contentSetup = async()=>{
                         name: `${attribute} Element`
                     });
                     if(attributeElement){
-                        return toTitleCase(attributeElement.querySelector('b').innerText);
+                        return toTitleCase(attributeElement.parentElement.querySelector('.valu').innerText);
                     }else{
                         return '';
                     }
@@ -3996,11 +3996,11 @@ const contentSetup = async()=>{
                 const description = document.querySelector('#postingbody').innerText;
                 const url = window.location.href;
                 const uniqueId = url.match(/\/\d+\.html/)[0].replace(/\/|\.html/g,'');
-                
+                const year = document.querySelector('.attr .valu.year')?.innerText || title.match(/^\d{4}/)?.[0] || '';
                 let data = {
                     State: toTitleCase(state),
                     City: toTitleCase(city),
-                    Vehicle: title,
+                    Vehicle: toTitleCase(document.querySelector('.attr .valu.makemodel')?.innerText) ||title,
                     // $25,000 to 25000
                     Price$: price.replace(/\$|,/g,''),
                     Date: postDate,
@@ -4013,6 +4013,7 @@ const contentSetup = async()=>{
                 delete listingAttributes['odometer'];
                 data = {...data,...listingAttributes};
                 console.log(data)
+                throw new Error('stop');
                 // https://altoona.craigslist.org/cto/d/johnstown-2018-subaru-forester-premium/7692112916.html#
                 // only .html part
                 const dataDB = new ChromeStorage('data');
