@@ -3928,7 +3928,7 @@ const contentSetup = async()=>{
         const links = await linksDB.GET();
         const currentLink = links[linkIndex];
         const aftercollectData = async()=>{
-            if(linkIndex==links.length){
+            if(linkIndex>=links.length){
                 linkIndex = 0;
                 await linkIndexDB.SET(linkIndex);
                 cityIndex++;
@@ -4061,8 +4061,10 @@ const contentSetup = async()=>{
                     await dataDB.SET(dataDBValues);
                     linkIndex++;
                     await aftercollectData();
+                }else{
+
+                    await aftercollectData();
                 }
-                // await aftercollectData();
                 
                 
             }
