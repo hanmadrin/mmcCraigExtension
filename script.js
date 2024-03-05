@@ -3973,7 +3973,7 @@ const contentSetup = async()=>{
                         data: {
                             type: 'querySelectorAll',
                             isMonoExpected: true,
-                            selector: `attrgroup span.labl`,
+                            selector: `.attrgroup .attr span.labl`,
                             innerText : `${attribute}:`,
                         },
                         instant: true,
