@@ -3927,106 +3927,7 @@ const contentSetup = async()=>{
         const linksDB = new ChromeStorage('links');
         const links = await linksDB.GET();
         const currentLink = links[linkIndex];
-        // console.log(links);
-        // throw new Error('stop');
-
-        if(!window.location.href.includes(currentLink) && links.length!=0){
-            contentScripts.pageRedirection(currentLink,'redirecting to craiglist');
-            return 0;
-        }else{
-            const toTitleCase = (text)=>{
-                return text.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
-            } 
-            contentScripts.showDataOnConsole(`${linkIndex}/${links.length}-${cityIndex}/${stateCities[stateIndex].cities.length}-${stateIndex}/${stateCities.length}`)
-            const state = currentState;
-            const city = currentCity;
-            if(links.length!=0){
-                const titleElement = await contentScripts.getElementBySelector({
-                    data: {
-                        type: 'querySelectorAll',
-                        isMonoExpected: true,
-                        selector: '.postingtitletext #titletextonly',
-                    },
-                    instant: false,
-                    maxTimeOut: 30,
-                    required: true,
-                    name: 'titleElement'
-                });
-                const price = document.querySelector('.postingtitle .price').innerText;
-                const title = titleElement.innerText;
-                const postDate = document.querySelector('.postinginfo time').getAttribute('datetime');
-                const attributes = [
-                    'VIN',
-                    'condition',
-                    'cylinders',
-                    'drive',
-                    'fuel',
-                    'odometer',
-                    'paint color',
-                    'size',
-                    'title status',
-                    'transmission',
-                    'type',
-                ]
-                const getListingAttributeValue = async (attribute)=>{
-                    const attributeElement = await contentScripts.getElementBySelector({
-                        data: {
-                            type: 'querySelectorAll',
-                            isMonoExpected: true,
-                            selector: `.attrgroup .attr span.labl`,
-                            innerText : `${attribute}:`,
-                        },
-                        instant: true,
-                        // maxTimeOut: 5,
-                        required: false,
-                        name: `${attribute} Element`
-                    });
-                    if(attributeElement){
-                        return toTitleCase(attributeElement.parentElement.querySelector('.valu').innerText);
-                    }else{
-                        return '';
-                    }
-                };
-                const listingAttributes = {};
-                for(let i=0;i<attributes.length;i++){
-                    const attribute = attributes[i];
-                    listingAttributes[attribute] = await getListingAttributeValue(attribute);
-    
-                }
-                const description = document.querySelector('#postingbody').innerText;
-                const url = window.location.href;
-                const uniqueId = url.match(/\/\d+\.html/)[0].replace(/\/|\.html/g,'');
-                const year = document.querySelector('.attr .valu.year')?.innerText || title.match(/^\d{4}/)?.[0] || '';
-                let data = {
-                    Seller : uniqueId,
-                    URL : url,
-                    Year: year,
-                    Vehicle: toTitleCase(document.querySelector('.attr .valu.makemodel')?.innerText) ||title,
-                    City: toTitleCase(city),
-                    State: toTitleCase(state),
-                    // $25,000 to 25000
-                    Price: price.replace(/\$|,/g,''),
-                    Mileage : listingAttributes['odometer'],
-                    Date: postDate,
-                    "Vin#" : listingAttributes['VIN'].toUpperCase(),
-                }
-                delete listingAttributes['VIN'];
-                delete listingAttributes['odometer'];
-                data = {...data,...listingAttributes};
-                console.log(data)
-                // throw new Error('stop');
-                // https://altoona.craigslist.org/cto/d/johnstown-2018-subaru-forester-premium/7692112916.html#
-                // only .html part
-                
-                const dataDB = new ChromeStorage('data');
-                const dataDBValues = await dataDB.GET() || {};
-                console.log('total data',Object.keys(dataDBValues));
-                dataDBValues[uniqueId] = data;
-                await dataDB.SET(dataDBValues);
-                linkIndex++;
-            }
-            
-            
+        const aftercollectData = async()=>{
             if(linkIndex==links.length){
                 linkIndex = 0;
                 await linkIndexDB.SET(linkIndex);
@@ -4059,6 +3960,121 @@ const contentSetup = async()=>{
                 // page redirection
                 contentScripts.pageRedirection(links[linkIndex],'redirecting to craiglist link '+linkIndex);
             }
+        };
+        try{
+            
+            // console.log(links);
+            // throw new Error('stop');
+
+            if(!window.location.href.includes(currentLink) && links.length!=0){
+                contentScripts.pageRedirection(currentLink,'redirecting to craiglist');
+                return 0;
+            }else{
+                const toTitleCase = (text)=>{
+                    return text.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+                } 
+                contentScripts.showDataOnConsole(`${linkIndex}/${links.length}-${cityIndex}/${stateCities[stateIndex].cities.length}-${stateIndex}/${stateCities.length}`)
+                const state = currentState;
+                const city = currentCity;
+                if(links.length!=0){
+                    const titleElement = await contentScripts.getElementBySelector({
+                        data: {
+                            type: 'querySelectorAll',
+                            isMonoExpected: true,
+                            selector: '.postingtitletext #titletextonly',
+                        },
+                        instant: false,
+                        maxTimeOut: 30,
+                        required: true,
+                        name: 'titleElement'
+                    });
+                    const price = document.querySelector('.postingtitle .price').innerText;
+                    const title = titleElement.innerText;
+                    const postDate = document.querySelector('.postinginfo time').getAttribute('datetime');
+                    const attributes = [
+                        'VIN',
+                        'condition',
+                        'cylinders',
+                        'drive',
+                        'fuel',
+                        'odometer',
+                        'paint color',
+                        'size',
+                        'title status',
+                        'transmission',
+                        'type',
+                    ]
+                    const getListingAttributeValue = async (attribute)=>{
+                        const attributeElement = await contentScripts.getElementBySelector({
+                            data: {
+                                type: 'querySelectorAll',
+                                isMonoExpected: true,
+                                selector: `.attrgroup .attr span.labl`,
+                                innerText : `${attribute}:`,
+                            },
+                            instant: true,
+                            // maxTimeOut: 5,
+                            required: false,
+                            name: `${attribute} Element`
+                        });
+                        if(attributeElement){
+                            return toTitleCase(attributeElement.parentElement.querySelector('.valu').innerText);
+                        }else{
+                            return '';
+                        }
+                    };
+                    const listingAttributes = {};
+                    for(let i=0;i<attributes.length;i++){
+                        const attribute = attributes[i];
+                        listingAttributes[attribute] = await getListingAttributeValue(attribute);
+        
+                    }
+                    const description = document.querySelector('#postingbody').innerText;
+                    const url = window.location.href;
+                    const uniqueId = url.match(/\/\d+\.html/)[0].replace(/\/|\.html/g,'');
+                    const year = document.querySelector('.attr .valu.year')?.innerText || title.match(/^\d{4}/)?.[0] || '';
+                    let data = {
+                        Seller : uniqueId,
+                        URL : url,
+                        Year: year,
+                        Vehicle: toTitleCase(document.querySelector('.attr .valu.makemodel')?.innerText) ||title,
+                        City: toTitleCase(city),
+                        State: toTitleCase(state),
+                        // $25,000 to 25000
+                        Price: price.replace(/\$|,/g,''),
+                        Mileage : listingAttributes['odometer'],
+                        Date: postDate,
+                        "Vin#" : listingAttributes['VIN'].toUpperCase(),
+                    }
+                    delete listingAttributes['VIN'];
+                    delete listingAttributes['odometer'];
+                    data = {...data,...listingAttributes};
+                    console.log(data)
+                    // throw new Error('stop');
+                    // https://altoona.craigslist.org/cto/d/johnstown-2018-subaru-forester-premium/7692112916.html#
+                    // only .html part
+
+                    const dataDB = new ChromeStorage('data');
+                    const dataDBValues = await dataDB.GET() || {};
+                    console.log('total data',Object.keys(dataDBValues));
+                    dataDBValues[uniqueId] = data;
+                    await dataDB.SET(dataDBValues);
+                    linkIndex++;
+                    await aftercollectData();
+                }
+                
+                
+                
+            }
+        }catch(e){
+            contentScripts.showDebugButton('skip', async()=>{
+                linkIndex++;
+                await aftercollectData();
+            
+            });
+            contentScripts.showDataOnConsole('Error Occured');
+            contentScripts.showConsoleError();
+            throw e;
         }
 
     };
@@ -4074,6 +4090,8 @@ const contentSetup = async()=>{
                 await stateIndexDB.SET(0);
                 await cityIndexDB.SET(0);
                 await linkIndexDB.SET(0);
+                const dataDB = new ChromeStorage('data');
+                await dataDB.SET({});
                 await stepDB.SET('collectLists');
                 contentScripts.pageRedirection(window.location.href,'restarting');
             });
