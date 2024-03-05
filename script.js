@@ -4014,9 +4014,10 @@ const contentSetup = async()=>{
                 delete listingAttributes['odometer'];
                 data = {...data,...listingAttributes};
                 console.log(data)
-                throw new Error('stop');
+                // throw new Error('stop');
                 // https://altoona.craigslist.org/cto/d/johnstown-2018-subaru-forester-premium/7692112916.html#
                 // only .html part
+                
                 const dataDB = new ChromeStorage('data');
                 const dataDBValues = await dataDB.GET() || {};
                 console.log('total data',Object.keys(dataDBValues));
