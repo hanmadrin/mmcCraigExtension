@@ -4070,7 +4070,7 @@ const contentSetup = async()=>{
                     const uniqueId = url.match(/\/\d+\.html/)[0].replace(/\/|\.html/g,'');
                     const year = document.querySelector('.attr .valu.year')?.innerText || title.match(/^\d{4}/)?.[0] || '';
                     let data = {
-                        Seller : uniqueId,
+                        Seller : `${year}-${state}-${uniqueId}`,
                         URL : url,
                         Year: year,
                         Vehicle: toTitleCase(document.querySelector('.attr .valu.makemodel')?.innerText) ||title,
@@ -4079,7 +4079,7 @@ const contentSetup = async()=>{
                         // $25,000 to 25000
                         Price: price.replace(/\$|,/g,''),
                         Mileage : listingAttributes['odometer'],
-                        Date: postDate,
+                        ID: uniqueId,
                         "Vin#" : listingAttributes['VIN'].toUpperCase(),
                     }
                     delete listingAttributes['VIN'];
