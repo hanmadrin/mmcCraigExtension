@@ -3791,6 +3791,8 @@ const contentSetup = async()=>{
         //         "nwct",
         //     ]
         // },
+
+        // new states
         {
             state: 'West Virginia',
             cities: [
