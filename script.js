@@ -3684,113 +3684,113 @@ const contentSetup = async()=>{
     const stepDB = new ChromeStorage('step');
     const step = await stepDB.GET() || 'collectLists';
     const stateCities = [
-        {
-            state: 'Pennsylvania',
-            cities: [
-                "pittsburgh",
-                "meadville",
-                "altoona",
-                "erie",
-                "chambersburg",
-                "pennstate",
-                "williamsport",
-                "harrisburg",
-                "york",
-                "lancaster",
-                "reading",
-                "scranton",
-                "allentown",
-                "poconos",
-                "philadelphia",
+        // {
+        //     state: 'Pennsylvania',
+        //     cities: [
+        //         "pittsburgh",
+        //         "meadville",
+        //         "altoona",
+        //         "erie",
+        //         "chambersburg",
+        //         "pennstate",
+        //         "williamsport",
+        //         "harrisburg",
+        //         "york",
+        //         "lancaster",
+        //         "reading",
+        //         "scranton",
+        //         "allentown",
+        //         "poconos",
+        //         "philadelphia",
 
-                "twintiers",
-            ]
-        },
-        {
-            state: 'Maryland',
-            cities: [
-                "annapolis",
-                "baltimore",
-                "chambersburg",
-                "easternshore",
-                "frederick",
-                "smd",
-                "westmd",
-            ]
-        },
-        {
-            state: 'Delaware',
-            cities: [
-                "delaware",
-            ]
-        },
-        {
-            state: 'New Jersey',
-            cities: [
-                "cnj",
-                "jerseyshore",
-                "newjersey",
-                "southjersey",
-            ]
-        },
-        {
-            state: 'New York',
-            cities: [
-                "albany",
-                "binghamton",
-                "buffalo",
-                "catskills",
-                "chautauqua",
-                "elmira",
-                "fingerlakes",
-                "glensfalls",
-                "hudsonvalley",
-                "ithaca",
-                "longisland",
-                "newyork",
-                "oneonta",
-                "plattsburgh",
-                "potsdam",
-                "rochester",
-                "syracuse",
-                "twintiers",
-                "utica",
-                "watertown"
-            ]
-        },
-        {
-            state: 'Ohio',
-            cities: [
-                "youngstown",
+        //         "twintiers",
+        //     ]
+        // },
+        // {
+        //     state: 'Maryland',
+        //     cities: [
+        //         "annapolis",
+        //         "baltimore",
+        //         "chambersburg",
+        //         "easternshore",
+        //         "frederick",
+        //         "smd",
+        //         "westmd",
+        //     ]
+        // },
+        // {
+        //     state: 'Delaware',
+        //     cities: [
+        //         "delaware",
+        //     ]
+        // },
+        // {
+        //     state: 'New Jersey',
+        //     cities: [
+        //         "cnj",
+        //         "jerseyshore",
+        //         "newjersey",
+        //         "southjersey",
+        //     ]
+        // },
+        // {
+        //     state: 'New York',
+        //     cities: [
+        //         "albany",
+        //         "binghamton",
+        //         "buffalo",
+        //         "catskills",
+        //         "chautauqua",
+        //         "elmira",
+        //         "fingerlakes",
+        //         "glensfalls",
+        //         "hudsonvalley",
+        //         "ithaca",
+        //         "longisland",
+        //         "newyork",
+        //         "oneonta",
+        //         "plattsburgh",
+        //         "potsdam",
+        //         "rochester",
+        //         "syracuse",
+        //         "twintiers",
+        //         "utica",
+        //         "watertown"
+        //     ]
+        // },
+        // {
+        //     state: 'Ohio',
+        //     cities: [
+        //         "youngstown",
 
-                "akroncanton",
-                "ashtabula",
-                "athensohio",
-                "chillicothe",
-                "cincinnati",
-                "cleveland",
-                "columbus",
-                "dayton",
-                "huntington",
-                "limaohio",
-                "mansfield",
-                "wheeling",
-                "parkersburg",
-                "sandusky",
-                "toledo",
-                "tuscarawas",
-                "zanesville",
-            ]
-        },
-        {
-            state: 'Connecticut',
-            cities: [
-                "newlondon",
-                "hartford",
-                "newhaven",
-                "nwct",
-            ]
-        },
+        //         "akroncanton",
+        //         "ashtabula",
+        //         "athensohio",
+        //         "chillicothe",
+        //         "cincinnati",
+        //         "cleveland",
+        //         "columbus",
+        //         "dayton",
+        //         "huntington",
+        //         "limaohio",
+        //         "mansfield",
+        //         "wheeling",
+        //         "parkersburg",
+        //         "sandusky",
+        //         "toledo",
+        //         "tuscarawas",
+        //         "zanesville",
+        //     ]
+        // },
+        // {
+        //     state: 'Connecticut',
+        //     cities: [
+        //         "newlondon",
+        //         "hartford",
+        //         "newhaven",
+        //         "nwct",
+        //     ]
+        // },
         {
             state: 'West Virginia',
             cities: [
