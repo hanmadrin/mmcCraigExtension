@@ -3790,6 +3790,96 @@ const contentSetup = async()=>{
                 "newhaven",
                 "nwct",
             ]
+        },
+        {
+            state: 'West Virginia',
+            cities: [
+                "charlestonwv",
+                "martinsburg",
+                "morgantown",
+                "parkersburg",
+                "swv",
+                "wheeling",
+            ]
+        },
+        {
+            state: 'Virginia',
+            cities: [
+                "charlottesville",
+                "danville",
+                "fredericksburg",
+                "norfolk",
+                "harrisonburg",
+                "lynchburg",
+                "blacksburg",
+                "richmond",
+                "roanoke",
+                "swva",
+                "winchester",
+            ]
+        },
+        {
+            state: 'Massachusetts',
+            cities: [
+                "boston",
+                "capecod",
+                "southcoast",
+                "westernmass",
+                "worcester",
+            ]
+        },
+        {
+            state: 'North Carolina',
+            cities: [
+                "asheville",
+                "boone",
+                "charlotte",
+                "eastnc",
+                "fayetteville",
+                "greensboro",
+                "hickory",
+                "onslow",
+                "outerbanks",
+                "raleigh",
+                "wilmington",
+                "winstonsalem",
+            ]
+        },
+        {
+            state: 'Tennessee',
+            cities: [
+                "chattanooga",
+                "clarksville",
+                "cookeville",
+                "jacksontn",
+                "knoxville",
+                "memphis",
+                "nashville",
+                "tricities",
+            ]
+        },
+        {
+            state: 'Michigan',
+            cities: [
+                "annarbor",
+                "battlecreek",
+                "centralmich",
+                "detroit",
+                "flint",
+                "grandrapids",
+                "holland",
+                "jxn",
+                "kalamazoo",
+                "lansing",
+                "monroemi",
+                "muskegon",
+                "nmi",
+                "porthuron",
+                "saginaw",
+                "swmi",
+                "thumb",
+                "up",
+            ]
         }
 
     ];
